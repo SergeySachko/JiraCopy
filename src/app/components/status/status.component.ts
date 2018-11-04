@@ -3,7 +3,6 @@ import { StatusModel } from 'src/app/models/status.model';
 import { TicketModel } from 'src/app/models/ticket.model';
 import { TicketsService } from 'src/app/services/tickets.service';
 import { StatusesService } from 'src/app/services/statuses.service';
-import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
 import { ModalService } from 'src/app/services/modals.service';
 
 @Component({
