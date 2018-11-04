@@ -1,0 +1,55 @@
+<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" (click)="close()">&times;</button>
+            <h4 class="modal-title">Add new ticket</h4>
+        </div>
+        <div class="modal-body">
+            <form #Form class="form-horizontal container-fluid" style="margin:15px;" >
+                <div class="col-md-12">    
+                  <div class="form-group" >
+                      <label>Title:</label>                                                     
+                      <input type="text"  class="form-control" [(ngModel)]="model.title" name="title" />
+                  </div>  
+                  <div class="form-group" >
+                      <label>Description:</label>   
+                      <textarea  class="form-control" [(ngModel)]="model.description" name="description"></textarea>                                                    
+                     
+                  </div>
+                  <div class="form-group" >
+                      <label>Type:</label>                                                     
+                      <select [(ngModel)]="model.type" name="Type"  class="form-control">
+                        <option *ngFor="let item of types | enumSelect" [value]="item.key" >{{item.value}}</option>
+                      </select>
+                  </div>
+                  <div class="form-group" >
+                      <label>Priority:</label>                                                     
+                      <select  [(ngModel)]="model.priority" name="Priority"  class="form-control">
+                        <option *ngFor="let item of priorities | enumSelect" [value]="item.key">{{item.value}}</option>
+                      </select>
+                  </div>
+                  <div class="form-group" >
+                      <label>Status :</label>                                                     
+                      <select  [(ngModel)]="model.statusId" name="Status"  class="form-control">
+                          <option *ngFor="let item of statusesService.statuses()" [value]="item.id">{{item.status}}</option>
+                      </select>
+                  </div>
+                  <div class="form-group" >
+                    <label>Due Date :</label>                                                     
+                    <input type="date"  class="form-control" [(ngModel)]="model.dueDate" name="dueDate"/>                  
+                  </div>                  
+                  <div class="form-group" >
+                    <label>Assignee :</label>                                                     
+                    <input type="text"  class="form-control" [(ngModel)]="model.assignee" name="assignee" />               
+                  </div>
+
+                </div>
+            </form>        
+        </div>
+        <div class="modal-footer">
+            <span class="pull-left" style="color: red;font-size: 16px;font-weight: bold;">{{error}}</span>
+            <button type="button" class="btn btn-primary" (click)="confirm()">Save</button>            
+            <button type="button" class="btn btn-danger" (click)="cancel()">Cancel</button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,52 @@
+.boardHeader{
+    margin-bottom: 10px;
+    margin-top:10px;
+}
+.boardBody{
+    overflow-x: auto;
+    width:100%;
+    display: inline-flex;
+}
+.column{
+    min-height:800px;
+    background-color: #F4F5F7;  
+    margin-right:15px;
+    width:24.5%;
+    float:left;
+    border-radius: 3px;
+}
+.dropdown-menu{
+    padding:3px;
+}
+.dropdown-menu div:hover{
+    cursor: pointer;
+}
+.dropdown-toggle:hover{
+    cursor: pointer;
+}
+.dropdown-toggle{
+    margin-right:5px;
+}
+.title{
+    font-size: 18px;
+}
+.addTicket:hover{
+    cursor: pointer;
+}
+.addTicket{
+    margin-right: 15px;
+}
+.search{
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 3px 10px;
+    margin-right:10px;
+}
+.addColumn{
+    margin-right: 15px;
+}
+.sortFilter{
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 3px 10px;    
+}

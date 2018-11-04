@@ -1,0 +1,36 @@
+.ticketContainer{
+    background-color: white;
+    width: 100%;
+    height:100px;
+    padding: 2px;
+    border-radius:2px;
+    margin-bottom: 10px;
+}
+.title{
+    display: block;
+    margin-left:5px;
+    font-size: 16px;
+    font-weight: bolder;
+}
+.dueDate{
+    display: block;
+    margin-left:5px;
+    margin-top:3 px;
+    color:#c4c4c4;
+}
+.ticketInfoContainer{   
+    width:100%;
+    margin-top: 25px;
+    margin-left: 5px;
+}
+
+.ticketPriorityContainer{
+    display: inline-block;
+    margin-left: 5px;
+}
+.ticketTypeContainer{
+    display: inline-block;
+}
+.assignee{
+    margin-right:5px;
+}

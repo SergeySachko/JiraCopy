@@ -1,0 +1,50 @@
+<div class="modal-dialog">
+  <div class="modal-content">
+      <div class="modal-header">
+          <button type="button" class="close" (click)="close()">&times;</button>
+          <h4 class="modal-title">Add new ticket</h4>
+      </div>
+      <div class="modal-body">
+          <form #Form class="form-horizontal container-fluid" style="margin:15px;" >
+              <div class="col-md-12">    
+                <div class="form-group" >
+                    <label>Title: {{model.title}}</label>
+                </div>  
+                <div class="form-group" >
+                    <label>Description: {{model.description}}</label>
+                </div>
+                <div class="form-group" >
+                    <label>Type: {{types[model.type]}}</label>
+                </div>
+                <div class="form-group" >
+                    <label>Priority: {{priorities[model.priority]}}</label>
+                </div>
+                <div class="form-group" >
+                  <label>Due Date :{{ model.dueDate}}</label>   
+                </div>                  
+                <div class="form-group" >
+                  <label>Assignee : {{model.assignee}}</label> 
+                </div>
+              </div>
+              <div class="col-md-12">    
+                <p>Comments:</p>
+                <div class="col-md-12 messageContainer" *ngFor="let comment of model.comments">
+                   <p>Date - {{comment.date}}</p>
+                   <p>{{comment.message}}</p>
+                </div>
+              </div>
+              <div class="col-md-12">
+                <label>New Comment</label>
+                <textarea [(ngModel)]="newComment.message" name="message"></textarea>
+                <button (click)="saveMessage()">Save</button>
+              </div>
+          </form> 
+                 
+      </div>
+      <div class="modal-footer">
+          <span class="pull-left" style="color: red;font-size: 16px;font-weight: bold;">{{error}}</span>
+          <button type="button" class="btn btn-primary" (click)="confirm()">Save</button>            
+          <button type="button" class="btn btn-danger" (click)="cancel()">Cancel</button>
+      </div>
+  </div>
+</div>

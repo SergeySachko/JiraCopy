@@ -1,0 +1,18 @@
+[
+    {
+        "id":"1",
+        "status":"Todo"
+    },
+    {
+        "id":"2",
+        "status":"In Progress"
+    },
+    {
+        "id":"3",
+        "status":"Review"
+    },
+    {
+        "id":"4",
+        "status":"Done "
+    }
+]

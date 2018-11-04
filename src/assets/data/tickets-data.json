@@ -1,0 +1,52 @@
+[{
+    "id":"1",
+    "title":"Task 1",
+    "description":"New Task 1",
+    "type":"1",
+    "priority":"0",
+    "creationTime":"20/10/2018",
+    "comments":[{
+        "id":"1",
+        "message":"First comment",
+        "date":"20/10/2018"
+    }],
+    "statusId":"1",
+    "dueDate":"23/10/2018",
+    "labels":[
+        "label 1", "label 2", "label 3"
+    ],
+    "assignee":"Sergey"
+},
+{
+    "id":"2",
+    "title":"Task 2",
+    "description":"New Task 2",
+    "type":"2",
+    "priority":"1",
+    "creationTime":"21/10/2018",
+    "comments":[{            
+    }],
+    "statusId":"2",
+    "dueDate":"24/10/2018",
+    "labels":[
+        "label 12", "label 22", "label 33"
+    ],
+    "assignee":"Alex"
+},
+{
+    "id":"3",
+    "title":"Task 3",
+    "description":"New Task 3",
+    "type":"0",
+    "priority":"2",
+    "creationTime":"21/10/2018",
+    "comments":[{            
+    }],
+    "statusId":"3",
+    "dueDate":"22/10/2018",
+    "labels":[
+        "label 1", "label 2"
+    ],
+    "assignee":"Sam"
+}]
+

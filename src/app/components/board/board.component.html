@@ -1,0 +1,43 @@
+<section class="BoardSection">
+  <div class="row">   
+    <div class="boardHeader">
+      <div class="">
+        <span class="title">{{title}}</span>
+        <div class="pull-right dropdown">
+          <div class="dropdown-toggle addColumn" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <img src="assets/images/ellipsis.png">
+          </div>    
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <div class="dropdown-item" (click)="addStatus()">Add Status</div>              
+          </div>     
+        </div>
+      </div>
+      <div class="">
+        <input type="text" placeholder="search" class="search"  [(ngModel)]="searchText">
+        <select name="statusSort" id="statusSort" [(ngModel)]="sortBy" class="sortFilter">
+            <option value="" disabled selected>Quick Filters</option>
+            <option value="title">Tilte</option>
+            <option value="description">Description</option>
+            <option value="labels">Labels</option>
+            <option value="assignee">Assignee</option>
+        </select>        
+        <div (click)="addTicket()" class="pull-right addTicket"><img src="assets/images/plus.png"/></div>
+      </div>
+    </div>
+    <div class="boardBody" *ngIf="statuses">
+      <div class="column" 
+          *ngFor="let status of statuses"  
+          mwlDroppable (drop)="drop($event.dropData, status)" 
+          (dragOver)="dragOverColumn()">
+
+            <status [status]="status"                
+                    [sortBy]="sortBy"  
+                    [searchText]="searchText" 
+                    (delete)="deleteStatus($event)">
+            </status>
+      </div>
+    </div>    
+  </div>
+</section>
+
+

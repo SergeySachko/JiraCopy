@@ -1,16 +1,44 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { BootstrapModalModule } from 'ng2-bootstrap-modal';
+import { HttpClientModule } from '@angular/common/http';
+import { DragAndDropModule } from 'angular-draggable-droppable';
 
-import { AppComponent } from './app.component';
+
+import { AppComponent } from './/components/app/app.component';
+import { BoardComponent } from './components/board/board.component';
+import { StatusComponent } from './components/status/status.component';
+import { TicketComponent } from './components/ticket/ticket.component';
+import { StatusModalComponent } from './components/modals/status-modal/status-modal.component';
+import { TicketModalComponent } from './components/modals/ticket-modal/ticket-modal.component';
+import { EnumSelectPipe } from './pipes/enum-select.pipe';
+import { TicketInfoModalComponent } from './components/modals/ticket-info-modal/ticket-info-modal.component';
+import { SortTicketPipe } from './pipes/sort-ticket.pipe';
+
+
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    BoardComponent,
+    StatusComponent,
+    TicketComponent,
+    StatusModalComponent,
+    TicketModalComponent,
+    EnumSelectPipe,
+    TicketInfoModalComponent,
+    SortTicketPipe,    
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    HttpClientModule,
+    FormsModule,
+    BootstrapModalModule.forRoot({ container: document.body }),
+    DragAndDropModule, 
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents:[StatusModalComponent, TicketModalComponent, TicketInfoModalComponent]
 })
 export class AppModule { }
