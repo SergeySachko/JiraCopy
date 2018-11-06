@@ -6,21 +6,24 @@
         <div class="pull-right dropdown">
           <div class="dropdown-toggle addColumn" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <img src="assets/images/ellipsis.png">
-          </div>    
+          </div> 
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
               <div class="dropdown-item" (click)="addStatus()">Add Status</div>              
           </div>     
         </div>
       </div>
       <div class="">
-        <input type="text" placeholder="search" class="search"  [(ngModel)]="searchText">
-        <select name="statusSort" id="statusSort" [(ngModel)]="sortBy" class="sortFilter">
-            <option value="" disabled selected>Quick Filters</option>
-            <option value="title">Tilte</option>
-            <option value="description">Description</option>
-            <option value="labels">Labels</option>
-            <option value="assignee">Assignee</option>
-        </select>        
+        <mat-form-field>
+            <input matInput placeholder="Search" [(ngModel)]="searchText" name="searchText">
+        </mat-form-field>   
+        <mat-form-field>
+            <mat-select name="statusSort" placeholder="Quick Filters" [(ngModel)]="sortBy">
+              <mat-option  [value]="title">Tilte</mat-option>
+              <mat-option  [value]="title">Description</mat-option>
+              <mat-option  [value]="title">Labels</mat-option>
+              <mat-option  [value]="title">Assignee</mat-option>
+            </mat-select>
+        </mat-form-field>  
         <div (click)="addTicket()" class="pull-right addTicket"><img src="assets/images/plus.png"/></div>
       </div>
     </div>

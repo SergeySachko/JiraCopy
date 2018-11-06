@@ -58,6 +58,8 @@ export class BoardComponent implements OnInit {
   drop(dropedData:TicketModel, status:StatusModel){
     event.preventDefault() 
     let fromStatusId = dropedData.statusId;    
+    if(fromStatusId == status.id)
+      return;
     dropedData.statusId = status.id;
     this.ticketsService.updateTicket(dropedData);
     this.ticketsService.moveTicket(dropedData, fromStatusId, status.id);

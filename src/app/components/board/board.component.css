@@ -35,6 +35,7 @@
 }
 .addTicket{
     margin-right: 15px;
+    margin-top: 25px;
 }
 .search{
     border: 1px solid #ccc;
@@ -49,4 +50,10 @@
     border: 1px solid #ccc;
     border-radius: 4px;
     padding: 3px 10px;    
+}
+mat-form-field{
+    margin-right:5px;
+}
+.modal{
+    z-index:10 !important;
 }

@@ -4,6 +4,8 @@ import { FormsModule } from '@angular/forms';
 import { BootstrapModalModule } from 'ng2-bootstrap-modal';
 import { HttpClientModule } from '@angular/common/http';
 import { DragAndDropModule } from 'angular-draggable-droppable';
+import { MaterialModule } from './modules/material.module';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 
 import { AppComponent } from './/components/app/app.component';
@@ -15,8 +17,6 @@ import { TicketModalComponent } from './components/modals/ticket-modal/ticket-mo
 import { EnumSelectPipe } from './pipes/enum-select.pipe';
 import { TicketInfoModalComponent } from './components/modals/ticket-info-modal/ticket-info-modal.component';
 import { SortTicketPipe } from './pipes/sort-ticket.pipe';
-
-
 
 @NgModule({
   declarations: [
@@ -36,6 +36,8 @@ import { SortTicketPipe } from './pipes/sort-ticket.pipe';
     FormsModule,
     BootstrapModalModule.forRoot({ container: document.body }),
     DragAndDropModule, 
+    MaterialModule,
+    BrowserAnimationsModule   
   ],
   providers: [],
   bootstrap: [AppComponent],
