@@ -10,11 +10,8 @@ import { StatusesService } from 'src/app/services/statuses.service';
 export class AppComponent implements OnInit{
   title = 'app';
 
-  constructor(private ticketsService:TicketsService,
-              private statusesService:StatusesService){}
+  constructor(private ticketsService:TicketsService){}
 
-  public ngOnInit():void{
-    this.ticketsService.init();
-    this.statusesService.init();
+  public ngOnInit():void{    
   }
 }

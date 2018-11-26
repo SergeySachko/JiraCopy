@@ -1,41 +1,31 @@
-import { Injectable } from '@angular/core';
-import { StatusModel } from '../models/status.model';
-import { HttpClient } from '@angular/common/http';
-import { BaseService } from './base.service';
+import { Injectable} from '@angular/core';
+import { Status } from '../models/status.model';
+import { config } from '../app.config' 
+import { FirebaseService } from './firebase.service';
+import { AngularFirestore } from '@angular/fire/firestore';
 
-@Injectable({
-    providedIn:"root"
-})
-export class StatusesService extends BaseService<StatusModel>{
+@Injectable({providedIn:"root"})
+export class StatusesService extends FirebaseService<Status>{
    
-    private _statuses:StatusModel[];
+    private baseStatus:Status;
 
-    constructor(protected http:HttpClient){
-        super(http, "statuses")
+    constructor(protected db:AngularFirestore){
+       super(config.collection_columns, db);
+
+       this.init();
+
+       this.get().subscribe(result =>{
+           result.map(
+               item => {
+                   if(item.isBase)
+                        this.baseStatus = item
+               }
+           )
+       })
     }
 
-    public init():void{
-        if(this._statuses)
-            return;    
-        this.get().subscribe(res =>{
-            localStorage.setItem("statuses",JSON.stringify(res));
-            this._statuses = res;
-        });
+    public getBaseStatus():Status{       
+        return this.baseStatus;
     }
 
-    public statuses(){
-        return this._statuses;
-    }
-
-    public updateStatus(model:StatusModel):void{       
-        this.update(model);
-    }
-
-    public saveStatus(model:StatusModel):void{
-        this.save(model);
-    }
-
-    public deleteStatus(model:StatusModel):void{
-        this.delete(model);
-    }
 }

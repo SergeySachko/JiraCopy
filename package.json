@@ -16,6 +16,7 @@
     "@angular/common": "^7.0.2",
     "@angular/compiler": "^7.0.2",
     "@angular/core": "^7.0.2",
+    "@angular/fire": "^5.1.0",
     "@angular/forms": "^7.0.2",
     "@angular/http": "^7.0.2",
     "@angular/material": "^6.4.7",
@@ -25,8 +26,10 @@
     "@ng-bootstrap/ng-bootstrap": "^4.0.0",
     "angular-draggable-droppable": "^4.0.2",
     "core-js": "^2.5.4",
+    "firebase": "^5.5.8",
     "jquery": "^3.3.1",
     "ng2-bootstrap-modal": "^1.0.1",
+    "ngx-drag-scroll": "^2.0.2",
     "rxjs": "^6.0.0",
     "zone.js": "^0.8.26"
   },

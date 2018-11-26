@@ -1,20 +1,3 @@
-<!--<div  class="ticketContainer">
-  <span class="title"> {{ticket.title}} </span> 
-  <span class="dueDate"><span *ngIf="ticket.dueDate">{{ticket.dueDate}}</span><span *ngIf="!ticket.dueDate">None</span></span>
-  <div class="ticketInfoContainer">
-    <div [ngSwitch]="ticket.type" class="ticketTypeContainer">
-        <div  *ngSwitchCase="ticketTypeEnum.Bug" class="bug"><img src="assets/images/bug-icon.png" alt="Bug" title="Bug"/></div>
-        <div  *ngSwitchCase="ticketTypeEnum.Task" class="task"><img src="assets/images/task-icon.png" alt="Task" title="Task"/></div>
-        <div  *ngSwitchCase="ticketTypeEnum.Story" class="story"><img src="assets/images/story-icon.png" alt="Story" title="Story"/></div>
-    </div>
-    <div [ngSwitch]="ticket.priority" class="ticketPriorityContainer">
-        <div  *ngSwitchCase="ticketPriorityEnum.Low" class="low"><img src="assets/images/arrow-up.png" alt="Low" title="Low"/></div>
-        <div  *ngSwitchCase="ticketPriorityEnum.Medium" class="medium"><img src="assets/images/double-up-arrow-angles.png" alt="Medium" title="Medium"/></div>
-        <div  *ngSwitchCase="ticketPriorityEnum.Hight" class="hight"><img src="assets/images/hight-double-up-arrow-angles.png" alt="Hight" title="Hight"/></div>
-    </div>
-    <div class="pull-right assignee"><span>{{ticket.id + "  "}}</span><span>{{ticket.assignee}}</span></div>
-  </div>
-</div>-->
 <mat-card>
     <mat-card-title>  {{ticket.title}} </mat-card-title>
     <mat-card-subtitle> 
@@ -32,6 +15,6 @@
             <div  *ngSwitchCase="ticketPriorityEnum.Medium" class="medium"><img src="assets/images/double-up-arrow-angles.png" alt="Medium" title="Medium"/></div>
             <div  *ngSwitchCase="ticketPriorityEnum.Hight" class="hight"><img src="assets/images/hight-double-up-arrow-angles.png" alt="Hight" title="Hight"/></div>
         </div>
-        <div class="pull-right assignee"><span>{{ticket.id + " - "}}</span><span>{{ticket.assignee}}</span></div>
+        <div class="pull-right assignee"><span>{{ticket.assignee}}</span></div>
     </mat-card-content>
 </mat-card>

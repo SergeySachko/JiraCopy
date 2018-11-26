@@ -1,5 +1,7 @@
-export class CommentModel{
+export class Comment{
     id:number;
     message:string;
-    date:Date;
+    date:Date;    
 }
+
+

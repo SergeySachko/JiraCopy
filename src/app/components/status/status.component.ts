@@ -1,10 +1,12 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { StatusModel } from 'src/app/models/status.model';
-import { TicketModel } from 'src/app/models/ticket.model';
+import { Status } from 'src/app/models/status.model';
+import { Ticket } from 'src/app/models/ticket.model';
 import { TicketsService } from 'src/app/services/tickets.service';
 import { StatusesService } from 'src/app/services/statuses.service';
 import { ModalService } from 'src/app/services/modals.service';
-
+import { Observable } from 'rxjs';
+import { MatDialog } from '@angular/material';
+import { DeleteStatusDialogComponent } from '../modals/status-modal/delete-status-modal/delete-status-modal.component'
 @Component({
   selector: 'status',
   templateUrl: './status.component.html',
@@ -12,28 +14,33 @@ import { ModalService } from 'src/app/services/modals.service';
 })
 export class StatusComponent implements OnInit {
 
-  private _status:StatusModel; 
-  private tickets:TicketModel[];
+  private _status:Status; 
+  private tickets:Observable<Ticket[]>;
   private isEditStatus:boolean=false;  
 
   @Input('status')
-  get status(): StatusModel {
+  get status(): Status {
     return this._status;
   }
-  set status(value: StatusModel) {
-    this._status = value;
+  set status(value: Status) {
+    this._status = { ...value };
     this.updateTicket();
  }
  @Input() sortBy:string;
  @Input() searchText:string;
 
- @Output() delete = new EventEmitter<StatusModel>();
+ @Output() delete = new EventEmitter<Status>();
 
   constructor(private ticketsService:TicketsService,
               private statusService:StatusesService,
-              private modalService: ModalService ) {
+              private modalService: ModalService,
+              private dialog: MatDialog ) {
 
-    this.ticketsService.emitUpdateTickets.subscribe(res =>{
+   
+  }
+
+  ngOnInit() {
+   /* this.ticketsService.emitUpdateTickets.subscribe(res =>{
       if(res.statusId == this._status.id)
         this.tickets.push(res);    
     })
@@ -45,40 +52,70 @@ export class StatusComponent implements OnInit {
       else if (res.toIndex == this._status.id){
         this.tickets.push(res.model);
       }
-    })
-  }
-
-  ngOnInit() {
-    
+    })*/
   }
 
   private updateTicket(){
-    this.tickets = this.ticketsService.tickets().filter(x=>x.statusId == this._status.id);
+    this.tickets = this.ticketsService.where(x => x.statusId == this._status.id);
   }
 
-  private editStatus(){
+  public editStatus(){
     this.isEditStatus = true;
   }
 
-  private saveStatus(){
+  public saveStatus(){
     this.isEditStatus = false;
 
-    this.statusService.updateStatus(this._status);
+    this.statusService.update(this._status.id, this._status);
   }
 
-  private deleteStatus(){
-    this.ticketsService.deleteTickets(this.tickets);
-    this.delete.emit(this.status);
-  } 
+  public deleteStatus(){  
+    if(this._status.isBase)
+      return;
+      
+    this.ticketsService.where(x => x.statusId == this._status.id).subscribe( tickets => { 
+      const dialogRefStatusDelete = this.dialog.open(DeleteStatusDialogComponent, { data : this._status}); 
+      dialogRefStatusDelete.afterClosed().subscribe(result=>{
 
-  checkData(event){
-    console.log(event);
-  }
- 
-  openTicket(ticket:TicketModel){
-    this.modalService.openTicketInfoModal(ticket).subscribe(result =>{
-      this.ticketsService.updateTicket(result);
+        if(!result)
+          return;
+
+        if(tickets.length > 0)
+        {           
+            const dialogRef = this.dialog.open(DeleteStatusDialogComponent)
+
+            dialogRef.afterClosed().subscribe(result => {   
+
+              let baseStatus = this.statusService.getBaseStatus();   
+
+              if(result == null)
+                return;
+    
+              if(result) 
+              {
+                this.ticketsService.deleteRange(tickets);         
+              }
+              else{
+                const updatedTickets =  tickets.map(ticket => {              
+                  return { ... ticket, statusId :baseStatus.id}
+                }); 
+                this.ticketsService.updateRange(updatedTickets);
+              }
+            });
+            
+        } 
+        
+        this.statusService.delete(this._status.id);
     })
+      
+     
+    });
+  }  
+ 
+  openTicket(ticket:Ticket){
+    this.modalService.openTicketInfoModal(ticket).subscribe(result =>{
+      this.ticketsService.update(ticket.id, result);
+    });
   }
 
   

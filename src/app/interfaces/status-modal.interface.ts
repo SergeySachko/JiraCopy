@@ -1,5 +1,5 @@
-import { StatusModel } from "../models/status.model";
+import { Status } from "../models/status.model";
 
 export interface StatusModalInterface{
-    model:StatusModel
+    model:Status
 }

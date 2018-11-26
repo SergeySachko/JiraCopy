@@ -1,5 +1,5 @@
-import { TicketModel } from "../models/ticket.model";
+import { Ticket } from "../models/ticket.model";
 
 export interface TicketModallInterface{
-    model:TicketModel
+    model:Ticket
 }

@@ -1,45 +1,52 @@
 <section class="BoardSection">
   <div class="row">   
-    <div class="boardHeader">
-      <div class="">
-        <span class="title">{{title}}</span>
-        <div class="pull-right dropdown">
-          <div class="dropdown-toggle addColumn" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <img src="assets/images/ellipsis.png">
-          </div> 
-          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-              <div class="dropdown-item" (click)="addStatus()">Add Status</div>              
-          </div>     
-        </div>
-      </div>
-      <div class="">
+    <div class="example-container mat-elevation-z6" style="background-color:#1A237E;color:#fff;margin-bottom:10px;">     
+        <span class="title" style="margin-left:10px;margin-right:10px;">{{title}}</span>
         <mat-form-field>
-            <input matInput placeholder="Search" [(ngModel)]="searchText" name="searchText">
+            <input matInput placeholder="Search" [(ngModel)]="searchText" name="searchText" style="color:#fff">
         </mat-form-field>   
         <mat-form-field>
-            <mat-select name="statusSort" placeholder="Quick Filters" [(ngModel)]="sortBy">
-              <mat-option  [value]="title">Tilte</mat-option>
-              <mat-option  [value]="title">Description</mat-option>
-              <mat-option  [value]="title">Labels</mat-option>
-              <mat-option  [value]="title">Assignee</mat-option>
+            <mat-select name="statusSort" placeholder="Quick Filters" [(ngModel)]="sortBy" [class]="whiteText" >
+              <mat-option  value="title" [style.color]="white">Tilte</mat-option>
+              <mat-option  value="description" [style.color]="white">Description</mat-option>
+              <mat-option  value="labels" [style.color]="white">Labels</mat-option>
+              <mat-option  value="assignee" [style.color]="white">Assignee</mat-option>
             </mat-select>
-        </mat-form-field>  
-        <div (click)="addTicket()" class="pull-right addTicket"><img src="assets/images/plus.png"/></div>
-      </div>
+        </mat-form-field>        
+        <button mat-raised-button  (click)="addStatus()" class="pull-right addColumnBtn">Add Column</button>       
+     
     </div>
-    <div class="boardBody" *ngIf="statuses">
-      <div class="column" 
-          *ngFor="let status of statuses"  
-          mwlDroppable (drop)="drop($event.dropData, status)" 
-          (dragOver)="dragOverColumn()">
+    <div class="boardBody" *ngIf="statuses" style="position: relative;">
+      <div class="status-big-container" *ngIf="!isSmallDevice">
+        <div class="column" 
+            *ngFor="let status of statuses | async | sortStatus; let i = index"  
+            mwlDroppable (drop)="drop($event.dropData, status)" 
+            (dragOver)="dragOverColumn()">
 
-            <status [status]="status"                
-                    [sortBy]="sortBy"  
-                    [searchText]="searchText" 
-                    (delete)="deleteStatus($event)">
-            </status>
+              <status [status]="status"                
+                      [sortBy]="sortBy"  
+                      [searchText]="searchText" 
+                      (delete)="deleteStatus($event)">
+              </status>
+        </div>
       </div>
-    </div>    
+      <div style="width:100%;" class="status-small-container" *ngIf="isSmallDevice">  
+        <div class="small-width-status"
+            *ngFor="let status of statuses | async | sortStatus; let i = index"  
+            mwlDroppable (drop)="drop($event.dropData, status)"
+            (dragOver)="dragOverColumn()">  
+              <status 
+                      [status]="status"                
+                      [sortBy]="sortBy"  
+                      [searchText]="searchText" 
+                      (delete)="deleteStatus($event)">
+              </status>
+            </div>
+        </div>
+      
+      <button *ngIf="!isSmallDevice" mat-mini-fab  (click)="addTicket()"  class="pull-right addTicketBtn" style="right: 15px;bottom: 15px;position: absolute;">+</button>
+    </div>  
+    <button *ngIf="isSmallDevice" mat-mini-fab  (click)="addTicket()"  class="pull-right addTicketBtn" style="right: 15px;bottom: 15px;position: absolute;">+</button>  
   </div>
 </section>
 

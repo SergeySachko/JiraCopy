@@ -1,52 +1,21 @@
 import { Injectable } from '@angular/core';
-import { BaseService } from './base.service';
-import { TicketModel } from '../models/ticket.model';
-import { HttpClient } from '@angular/common/http';
-import { Subject } from 'rxjs';
+import { Ticket } from '../models/ticket.model';
+import { Subject, Observable } from 'rxjs';
+import { config } from '../app.config' 
+import { FirebaseService } from './firebase.service';
+import { AngularFirestore } from '@angular/fire/firestore';
+
 
 @Injectable({providedIn:"root"})
-export class TicketsService extends BaseService<TicketModel>{
+export class TicketsService extends FirebaseService<Ticket>{
 
-    public emitUpdateTickets: Subject<TicketModel> = new Subject();
-    public emitMoveTicket: Subject<any> = new Subject();
-    private _tickets:TicketModel[];
+    public emitUpdateTickets: Subject<Ticket> = new Subject();
+    public emitMoveTicket: Subject<any> = new Subject();   
 
-    constructor(protected http:HttpClient){
-        super(http,"tickets")
-    }
+    constructor(protected db:AngularFirestore){
+        super(config.collection_tickets, db);
 
-    public init():void{
-        if(this._tickets)
-           return;          
-
-        this.get().subscribe(res =>{
-            localStorage.setItem("tickets",JSON.stringify(res));
-            this._tickets = res;
-        });
-    }
-
-    public tickets(){
-        return this._tickets;
-    }
-
-    public saveTicket(model:TicketModel){
-        this.save(model);
-        this.emitUpdateTickets.next(model);
-    }
-
-    public updateTicket(model:TicketModel){
-        this.update(model);
-    }
-
-    public moveTicket(model:TicketModel, fromIndex:number, toIndex:number){
-        this.emitMoveTicket.next({
-            model,
-            fromIndex,
-            toIndex
-        })
-    }
-
-    public deleteTickets(models:TicketModel[]){
-        this.deleteRange(models);
-    }
+        this.init();
+    }  
+   
 }

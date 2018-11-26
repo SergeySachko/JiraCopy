@@ -1,22 +1,25 @@
-import { Component, OnInit } from '@angular/core';
-import { StatusModel } from 'src/app/models/status.model';
+import { Component, OnInit, HostListener, AfterViewInit, ViewEncapsulation } from '@angular/core';
+import { Status } from 'src/app/models/status.model';
 import { StatusesService } from 'src/app/services/statuses.service';
 import { ModalService } from 'src/app/services/modals.service';
 import { TicketsService } from 'src/app/services/tickets.service';
-import { TicketModel } from 'src/app/models/ticket.model';
+import { Ticket } from 'src/app/models/ticket.model';
 import { HelperService } from 'src/app/common/helper.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'board',
   templateUrl: './board.component.html',
-  styleUrls: ['./board.component.css']
+  styleUrls: ['./board.component.css'],
+  encapsulation:ViewEncapsulation.None
 })
-export class BoardComponent implements OnInit {
+export class BoardComponent implements OnInit, AfterViewInit{  
 
-  private title:string = "Test board";
-  private statuses:StatusModel[];
-  private sortBy:string="";
-  private searchText:string;  
+  title:string = "Test board";
+  statuses:Observable<Status[]>;
+  sortBy:string="";
+  searchText:string; 
+  isSmallDevice:boolean = false; 
 
   constructor(private statusService:StatusesService,
               private modalService: ModalService,
@@ -24,49 +27,58 @@ export class BoardComponent implements OnInit {
               private helper:HelperService) { }
 
   ngOnInit() {
-    this.statuses = this.statusService.statuses(); 
+    this.statuses = this.statusService.get();     
   } 
 
-  addStatus(){   
-    let model = new StatusModel();
-    model.id = this.helper.getNextIndex(this.statuses);
-    this.modalService.openStatusModal(model).subscribe(result=>{
+  ngAfterViewInit(): void {
+    if(window.innerWidth < 1000)
+    {
+      this.isSmallDevice = true;
+    }
+    else{
+      this.isSmallDevice = false;
+    }
+  }
+
+  addStatus(){  
+    this.modalService.openStatusModal().subscribe(result=>{
       if(result && result.status)
-      {
-        this.statusService.saveStatus(result);
-        this.statuses.push(result);
-      }
+        this.statusService.add(result);       
     });
   }
 
-  deleteStatus(model:StatusModel){
-    this.statusService.deleteStatus(model);
-    this.statuses.splice(this.statuses.indexOf(model), 1);
-  }
-
-  addTicket(){
-    let model = new TicketModel();
-    model.id = this.helper.getNextIndex(this.ticketsService.tickets());
-    this.modalService.openTicketModal(model).subscribe(result=>{
+  addTicket(){   
+    this.modalService.openTicketModal().subscribe(result=>{
       if(result && result.title)
-      {        
-        this.ticketsService.saveTicket(result);
-      }
+        this.ticketsService.add(result);
     });
   }
 
-  drop(dropedData:TicketModel, status:StatusModel){
+  drop(dropedData:Ticket, status:Status){
     event.preventDefault() 
+    console.log("drop");
     let fromStatusId = dropedData.statusId;    
     if(fromStatusId == status.id)
       return;
     dropedData.statusId = status.id;
-    this.ticketsService.updateTicket(dropedData);
-    this.ticketsService.moveTicket(dropedData, fromStatusId, status.id);
+   
+    this.ticketsService.update(dropedData.id, dropedData);
+    //this.ticketsService.moveTicket(dropedData, fromStatusId, status.id);
   } 
 
   dragOverColumn(){
     event.preventDefault();    
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event) {
+    if(window.innerWidth < 1000)
+    {
+      this.isSmallDevice = true;
+    }
+    else{
+      this.isSmallDevice = false;
+    }
   }
 
  
