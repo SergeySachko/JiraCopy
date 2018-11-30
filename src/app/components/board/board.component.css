@@ -15,6 +15,25 @@
     float:left;
     border-radius: 3px;
 }
+.card{
+    background-color: #F4F5F7;
+    margin-bottom: 30px;
+    border: 1px solid #e6ecf5;
+    border-radius: 5px;
+    transition: all 0.3s ease-in-out;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    -ms-transition: all 0.3s ease-in-out;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-clip: border-box;
+}
 .dropdown-menu{
     padding:3px;
 }
@@ -61,24 +80,32 @@ mat-form-field{
 .mat-input-underline{
     border-bottom: 1px solid #fff!important;
 }
-.mat-form-field-label{
+.mat-elevation-z6 .mat-form-field-label{
     color: #fff !important;
 }
-.mat-focused .mat-form-field-label {
+.mat-elevation-z6 .mat-focused .mat-form-field-label {
     color: #fff !important;
 }
     
-.mat-form-field-ripple {
+.mat-elevation-z6 .mat-form-field-ripple {
     background-color: #fff !important;
 }
-
+.mat-elevation-z6  .mat-form-field-underline {
+    background-color: #fff;
+}
+.mat-select-arrow{
+    color:#fff
+}
+.mat-elevation-z6  .mat-select-value-text{
+    color:#fff;
+}
 
 .addTicketBtn{
     background-color: #61d800;
 }
-.addColumnBtn{
+.mat-elevation-z6 .addColumnBtn{
     margin-right: 15px;
-    margin-top: 15px;
+    margin-top: 10px;
 }
 
 .small-width-status{

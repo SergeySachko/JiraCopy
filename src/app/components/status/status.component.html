@@ -3,7 +3,7 @@
   <div class="col-md-12 columnHeader">
       <p *ngIf="!isEditStatus" (dblclick)="editStatus()">
         {{status.status}}
-        <span class="pull-right delete" (click)="deleteStatus()"><img src="assets/images/delete.png" /></span>
+        <span *ngIf="!_status.isBase" class="pull-right delete" (click)="deleteStatus()"><img src="assets/images/delete.png" /></span>
       </p>
       <form *ngIf="isEditStatus" (ngSubmit)="saveStatus()">
           <input type="text" class="editStatusTitleInput" [(ngModel)]="status.status"  name="status" />

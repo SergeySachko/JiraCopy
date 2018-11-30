@@ -13,12 +13,11 @@
               <mat-option  value="assignee" [style.color]="white">Assignee</mat-option>
             </mat-select>
         </mat-form-field>        
-        <button mat-raised-button  (click)="addStatus()" class="pull-right addColumnBtn">Add Column</button>       
-     
+        <button mat-raised-button  (click)="addStatus()" class="pull-right addColumnBtn">Add Column</button> 
     </div>
     <div class="boardBody" *ngIf="statuses" style="position: relative;">
       <div class="status-big-container" *ngIf="!isSmallDevice">
-        <div class="column" 
+        <div class="column card" 
             *ngFor="let status of statuses | async | sortStatus; let i = index"  
             mwlDroppable (drop)="drop($event.dropData, status)" 
             (dragOver)="dragOverColumn()">

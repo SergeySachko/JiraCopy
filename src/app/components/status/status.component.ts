@@ -34,25 +34,10 @@ export class StatusComponent implements OnInit {
   constructor(private ticketsService:TicketsService,
               private statusService:StatusesService,
               private modalService: ModalService,
-              private dialog: MatDialog ) {
-
-   
+              private dialog: MatDialog ) {   
   }
 
   ngOnInit() {
-   /* this.ticketsService.emitUpdateTickets.subscribe(res =>{
-      if(res.statusId == this._status.id)
-        this.tickets.push(res);    
-    })
-    this.ticketsService.emitMoveTicket.subscribe(res =>{
-      if(res.fromIndex == this._status.id)
-      {
-        this.tickets.splice(this.tickets.findIndex(x=> x.id == res.model.id), 1)
-      }
-      else if (res.toIndex == this._status.id){
-        this.tickets.push(res.model);
-      }
-    })*/
   }
 
   private updateTicket(){

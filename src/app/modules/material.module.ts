@@ -35,7 +35,7 @@ import {
   MatTabsModule,
   MatToolbarModule,
   MatTooltipModule,
-  MatTreeModule,
+  MatTreeModule
 } from '@angular/material';
 import {A11yModule} from '@angular/cdk/a11y';
 import {BidiModule} from '@angular/cdk/bidi';
@@ -52,7 +52,7 @@ import {DragDropModule} from '@angular/cdk/drag-drop';
 /**
  * NgModule that includes all Material modules.
 */
-@NgModule({
+@NgModule({  
   exports: [
     // CDK
     A11yModule,

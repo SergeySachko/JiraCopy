@@ -37,7 +37,7 @@ import { SortStatusPipe } from './pipes/sort-status.pipe';
     //Pipes
     EnumSelectPipe,   
     SortTicketPipe,   
-    SortStatusPipe 
+    SortStatusPipe
   ],
   imports: [
     BrowserModule,
