@@ -25,6 +25,7 @@ import { AppDateAdapter, APP_DATE_FORMATS } from 'src/app/common/data-adapter.se
 })
 export class TicketModalComponent extends DialogComponent<TicketModallInterface, Ticket> implements OnInit {
   defaultModel: Ticket = {} as Ticket;
+  dueDate:Date;
   statuses:Status[];  
   private types = TicketTypeEnum;
   private priorities = TicketPriorityEnum;
@@ -44,7 +45,9 @@ export class TicketModalComponent extends DialogComponent<TicketModallInterface,
   confirm(){  
     if(!this.defaultModel.statusId)
       this.error = "Please, chose status"
-          
+    
+    this.defaultModel = {...this.defaultModel, dueDate: this.dueDate.toDateString()}
+    
     this.result = { ...this.defaultModel };
 
     this.close();
