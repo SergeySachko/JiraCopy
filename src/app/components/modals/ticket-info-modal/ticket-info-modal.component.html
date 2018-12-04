@@ -5,46 +5,36 @@
           <h4 class="modal-title">Task info</h4>
       </div>
       <div class="modal-body">
-          <form #Form class="form-horizontal container-fluid" style="margin:15px;" >
-              <div class="col-md-12">    
-                <div class="form-group" >
-                    <label>Title: {{model.title}}</label>
-                </div>  
-                <div class="form-group" >
-                    <label>Description: {{model.description}}</label>
-                </div>
-                <div class="form-group" >
-                    <label>Type: {{types[model.type]}}</label>
-                </div>
-                <div class="form-group" >
-                    <label>Priority: {{priorities[model.priority]}}</label>
-                </div>
-                <div class="form-group" >
-                  <label>Due Date :{{ model.dueDate}}</label>   
-                </div>                  
-                <div class="form-group" >
-                  <label>Assignee : {{model.assignee}}</label> 
-                </div>
-              </div>
-              <div class="col-md-12">    
-                <p>Comments:</p>
+          <mat-card>
+            <mat-card-title>Title - {{model.title}}</mat-card-title>
+            <mat-card-subtitle>
+                    <p>Type:  {{types[model.type]}}</p>
+                    <p>Priority: {{priorities[model.priority]}}</p>
+                    <p>Due Date: {{ model.dueDate}}</p>
+                    <p>Assignee: {{model.assignee}}</p>
+            </mat-card-subtitle>
+            <mat-card-content>
+                Description: <br/>{{model.description}}
+            </mat-card-content>
+            <mat-card-footer>
+                <p style="padding-left: 24px;width:100%;">Comments:</p>
                 <div class="col-md-12 messageContainer" *ngFor="let comment of model.comments">
-                   <p>Date - {{comment.date}}</p>
-                   <p>{{comment.message}}</p>
+                    <p>Date - {{comment.date}}</p>
+                    <p>{{comment.message}}</p>
                 </div>
-              </div>
-              <div class="col-md-12">
-                <label>New Comment</label>
-                <textarea [(ngModel)]="newComment.message" name="message"></textarea>
-                <button (click)="saveMessage()">Save</button>
-              </div>
-          </form> 
+                <div class="col-md-12 commentContainer">
+                    <mat-form-field class="fullWidth">                      
+                            <textarea  matInput placeholder="New Comment"  [(ngModel)]="newComment.message" name="NewMessage"></textarea>   
+                    </mat-form-field>     
+                    <button mat-mini-fab  (click)="saveMessage()"  class="pull-right addCommnetBtn">+</button>   
+                </div>
+            </mat-card-footer>
+          </mat-card>
                  
       </div>
-      <div class="modal-footer">
-          <span class="pull-left" style="color: red;font-size: 16px;font-weight: bold;">{{error}}</span>
-          <button type="button" class="btn btn-primary" (click)="confirm()">Save</button>            
-          <button type="button" class="btn btn-danger" (click)="cancel()">Cancel</button>
+      <div class="modal-footer">        
+          <button type="button" mat-raised-button color="warn" class="btn btn-danger pull-left" (click)="delete()">Delete</button>
+          <button type="button" mat-raised-button class="pull-right" style="background-color:#1A237E;color:#fff;" (click)="cancel()">Close</button>
       </div>
   </div>
 </div>

@@ -22,6 +22,7 @@ import { SortTicketPipe } from './pipes/sort-ticket.pipe';
 import { environment } from 'src/environments/environment';
 import { DeleteStatusDialogComponent } from './components/modals/status-modal/delete-status-modal/delete-status-modal.component';
 import { SortStatusPipe } from './pipes/sort-status.pipe';
+import { DialogAgreementComponent } from './components/modals/comman/agreement/dialog-agreement.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { SortStatusPipe } from './pipes/sort-status.pipe';
     TicketModalComponent,
     DeleteStatusDialogComponent,
     TicketInfoModalComponent,
+    DialogAgreementComponent,
     //Pipes
     EnumSelectPipe,   
     SortTicketPipe,   
@@ -53,6 +55,6 @@ import { SortStatusPipe } from './pipes/sort-status.pipe';
   ],
   providers: [],
   bootstrap: [AppComponent],
-  entryComponents:[StatusModalComponent, TicketModalComponent, TicketInfoModalComponent, DeleteStatusDialogComponent]
+  entryComponents:[StatusModalComponent, TicketModalComponent, TicketInfoModalComponent, DeleteStatusDialogComponent, DialogAgreementComponent]
 })
 export class AppModule { }

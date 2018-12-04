@@ -1,0 +1,8 @@
+<div mat-dialog-content>
+    <p style="font-size:24px;">{{data.message}}</p> 
+    <p *ngIf="data.messageDescription">{{data.messageDescription}}</p>
+</div>
+<div mat-dialog-actions style="justify-content: center;">
+    <button mat-button (click)="confirm(true)" color="Error" style="background-color:#D50000;color:#fff;">{{data.messageConfirmBtn}}</button>
+    <button mat-button   (click)="confirm(false)" cdkFocusInitial  style="background-color:#1A237E;color:#fff;">{{data.messageCancelBtn}}</button>
+</div>

@@ -1,4 +1,27 @@
 .messageContainer{
-    border-bottom: 1px solid #000;
-    margin-bottom:10px;
+    margin-left: 20px;
+    margin-bottom: 10px;   
+    width: 90%;
+    border-bottom: 1px #f3f3f3 solid;
+    border-radius: 2px;
+    padding: 10px;
+}
+.messageContainer:nth-child(even){
+    background-color: #f3f3f3;
+}
+.fullWidth{
+    width:100%;
+}
+.addCommnetBtn{
+    margin-top: 15px;
+    margin-left: 10px;
+    background-color: #e0db2e;
+}
+.commentContainer{
+    display: flex;
+    width: 90%;
+    margin-left: 10px;
+}
+.mat-card-footer{
+    display: flow-root;
 }

@@ -9,7 +9,9 @@ export class DeleteStatusDialogComponent implements OnInit {
     
     constructor(public dialogRef: MatDialogRef<DeleteStatusDialogComponent>, @Inject(MAT_DIALOG_DATA) public data: any) { }
 
-    ngOnInit(): void { }
+    ngOnInit(): void {
+        console.log("A");
+     }
 
     public confirm(result:boolean){
         this.dialogRef.close(result)
