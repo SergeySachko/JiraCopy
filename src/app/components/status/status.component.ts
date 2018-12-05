@@ -7,7 +7,6 @@ import { ModalService } from 'src/app/services/modals.service';
 import { Observable, Subscription } from 'rxjs';
 import { MatDialog } from '@angular/material';
 import { DeleteStatusDialogComponent } from '../modals/status-modal/delete-status-modal/delete-status-modal.component'
-import { DeleteTicketsDialogComponent } from '../modals/ticket-modal/delete-ticket-modal/delete-status-modal.component';
 import { DialogAgreementComponent } from '../modals/comman/agreement/dialog-agreement.component';
 @Component({
   selector: 'status',
@@ -16,9 +15,9 @@ import { DialogAgreementComponent } from '../modals/comman/agreement/dialog-agre
 })
 export class StatusComponent implements OnInit{
 
-  private _status:Status; 
-  private tickets:Observable<Ticket[]>;
-  private isEditStatus:boolean=false;
+  public _status:Status; 
+  public tickets:Observable<Ticket[]>;
+  public isEditStatus:boolean=false;
   private taskSubscription:Subscription;
 
   @Input('status')

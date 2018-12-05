@@ -27,8 +27,8 @@ export class TicketModalComponent extends DialogComponent<TicketModallInterface,
   defaultModel: Ticket = {} as Ticket;
   dueDate:Date;
   statuses:Status[];  
-  private types = TicketTypeEnum;
-  private priorities = TicketPriorityEnum;
+  public types = TicketTypeEnum;
+  public priorities = TicketPriorityEnum;
   error:string;
 
   constructor(dialogService: DialogService,

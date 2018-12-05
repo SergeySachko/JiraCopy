@@ -6,11 +6,11 @@
             <input matInput placeholder="Search" [(ngModel)]="searchText" name="searchText" style="color:#fff">
         </mat-form-field>   
         <mat-form-field>
-            <mat-select name="statusSort" placeholder="Quick Filters" [(ngModel)]="sortBy" [class]="whiteText" >
-              <mat-option  value="title" [style.color]="white">Tilte</mat-option>
-              <mat-option  value="description" [style.color]="white">Description</mat-option>
-              <mat-option  value="labels" [style.color]="white">Labels</mat-option>
-              <mat-option  value="assignee" [style.color]="white">Assignee</mat-option>
+            <mat-select name="statusSort" placeholder="Quick Filters" [(ngModel)]="sortBy">
+              <mat-option  value="title">Tilte</mat-option>
+              <mat-option  value="description">Description</mat-option>
+              <mat-option  value="labels">Labels</mat-option>
+              <mat-option  value="assignee">Assignee</mat-option>
             </mat-select>
         </mat-form-field>        
         <button mat-raised-button  (click)="addStatus()" class="pull-right addColumnBtn">Add Column</button> 

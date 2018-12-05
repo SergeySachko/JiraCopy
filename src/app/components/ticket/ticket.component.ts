@@ -14,8 +14,8 @@ export class TicketComponent implements OnInit {
 
   @Input() ticket:Ticket;
 
-  private ticketTypeEnum = TicketTypeEnum;
-  private ticketPriorityEnum = TicketPriorityEnum;
+  public ticketTypeEnum = TicketTypeEnum;
+  public ticketPriorityEnum = TicketPriorityEnum;
 
   constructor() { }
 

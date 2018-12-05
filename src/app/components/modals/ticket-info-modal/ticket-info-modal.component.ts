@@ -18,8 +18,8 @@ import { DialogAgreementComponent } from '../comman/agreement/dialog-agreement.c
 export class TicketInfoModalComponent extends DialogComponent<TicketModallInterface, Ticket> implements TicketModallInterface,OnInit {
   model: Ticket;
   newComment:Comment = new Comment();
-  private types = TicketTypeEnum;
-  private priorities = TicketPriorityEnum;
+  public types = TicketTypeEnum;
+  public priorities = TicketPriorityEnum;
   constructor(dialogService: DialogService,
               private helper:HelperService,
               private ticketsService:TicketsService,
